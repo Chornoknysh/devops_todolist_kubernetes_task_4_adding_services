@@ -1,5 +1,24 @@
 # Testing ToDo App in Kubernetes
 
+## 1. Create Namespace
+```
+kubectl create namespace todoapp
+```
+## 2. Deploy BusyBox for Testing
+```
+kubectl run busybox \
+  --image=ikulyk404/busyboxplus:curl \
+  --namespace=todoapp \
+  --restart=Never \
+  -- sleep 1000
+
+```
+```
+kubectl get pods -n todoapp
+```
+```
+kubectl get endpoints -n todoapp todoapp-clusterip
+```
 ## 1. Test using ClusterIP Service from BusyBox
 First, make sure busybox pod is running in namespace `todoapp`:
 ```
