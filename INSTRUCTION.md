@@ -1,0 +1,20 @@
+# Testing ToDo App in Kubernetes
+
+## 1. Test using ClusterIP Service from BusyBox
+Exec into busybox pod:
+```
+kubectl exec -n todoapp -it busybox -- sh
+wget -qO- http://todoapp-clusterip:80
+```
+## 2. Test using Port Forward
+```
+kubectl port-forward -n todoapp svc/todoapp-clusterip 8080:80
+```
+Open http://localhost:8080
+
+## 3. Test using NodePort Service
+Check your Node IP (e.g., minikube ip) and open:
+
+```
+http://<NodeIP>:30080
+```
